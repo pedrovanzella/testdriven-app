@@ -1,10 +1,5 @@
 from flask.cli import FlaskGroup
-from project import app
-
-
-def create_app(script_info=None):
-    return app
-
+from project import create_app
 
 cli = FlaskGroup(create_app=create_app)
 
