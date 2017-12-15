@@ -11,5 +11,22 @@ services:
     ports:
       - 5001:5000
     environment:
-      - FLASK_APP=app.py
       - APP_SETTINGS=project.config.DevelopmentConfig
+      - DATABASE_URL=postgres://postgres:postgres@users-db:5432/users_dev
+      - DATABASE_TEST_URL=postgres://postgres:postgres@users-db:5432/users_test
+      - FLASK_APP=app.py
+    depends_on:
+      - users-db
+    links:
+      - users-db
+
+  users-db:
+    container_name: users-db
+    build:
+      context: ./users-service/project/db
+      dockerfile: Dockerfile
+    ports:
+      - 5432:5432
+    environment:
+      - POSTGRES_USER=postgres
+      - POSTGRES_PASSWORD=postgres
