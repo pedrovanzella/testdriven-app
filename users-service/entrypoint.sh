@@ -7,4 +7,4 @@ while ! nc -z users-db 5432; do
 done
 
 echo "PostgreSQL started"
-flask run -h 0.0.0.0
+python manage.py runserver -h 0.0.0.0

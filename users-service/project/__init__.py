@@ -1,15 +1,13 @@
+import os
 import datetime
 from flask import Flask, jsonify
 from flask_sqlalchemy import SQLAlchemy
 
 
-def create_app(app_settings=[]):
-    app = Flask(__name__)
-    app.config.from_object(app_settings)
-    return app
+app = Flask(__name__)
 
-
-app = create_app()
+app_settings = os.getenv('APP_SETTINGS')
+app.config.from_object(app_settings)
 
 db = SQLAlchemy(app)
 
