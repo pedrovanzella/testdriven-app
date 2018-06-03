@@ -65,4 +65,4 @@ def get_single_user(user_id):
             }
             return jsonify(response_object), 200
     except ValueError:
-        return jsonify(reponse_object), 404
+        return jsonify(response_object), 404
